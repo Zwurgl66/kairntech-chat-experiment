@@ -2,7 +2,7 @@ import json
 import re
 from pathlib import Path
 import json
-import plac
+#import plac
 import urllib3
 from datetime import datetime
 urllib3.disable_warnings()
@@ -13,15 +13,15 @@ import requests
 #requests.packages.urllib3.add_stderr_logger()
 
 
-@plac.annotations(
-    input=("Input", "positional", None, str),
-    output_dir=("Output directory", "positional", None, str),
-    user=("User", "option", "u", str),
-    password=("Password", "option", "p", str),
-    sherpa=("Sherpa server url", "option", None, str),
-    project=("Sherpa project", "option", None, str),
-    annotator=("Sherpa annotator, default is first favorite.", "option", None, str)
-)
+#@plac.annotations(
+#    input=("Input", "positional", None, str),
+#    output_dir=("Output directory", "positional", None, str),
+#    user=("User", "option", "u", str),
+#    password=("Password", "option", "p", str),
+#    sherpa=("Sherpa server url", "option", None, str),
+#    project=("Sherpa project", "option", None, str),
+#    annotator=("Sherpa annotator, default is first favorite.", "option", None, str)
+#)
 def sherpa_client(
         input,
         output_dir,
@@ -250,6 +250,6 @@ def get_token(server, user, password):
         return
 
 
-if __name__ == '__main__':
-    plac.call(sherpa_client)
+#if __name__ == '__main__':
+#    plac.call(sherpa_client)
 
