@@ -58,6 +58,8 @@ def get_references(resultjson):
 
 if 'history' not in st.session_state:
     st.session_state.history = ""
+if 'onlyquery' not in st.session_state:
+    st.session_state.onlyquery = ""
 
 if len(st.session_state.history) > 0:
     st.divider()
@@ -76,12 +78,13 @@ with col2:
 # wait until the user has entered a message
 
 if freshstart:
-    st.session_state.history = ""
+    st.session_state.history   = ""
+    st.session_state.onlyquery = ""
     st.rerun()
 
 if submit:
 
-    query    = "HISTORY: " + st.session_state.history + "  \n\nQUESTION:" + message
+    query    = "QUESTION:" + message + "\n\nHISTORY: " + st.session_state.onlyquery 
     print("=====================================================================")
     print("query = %s" % query)
     # delete any html markup in the query
@@ -115,4 +118,6 @@ if submit:
         st.session_state.history = "\n".join(lines[-MAXLINESINHISTORY:])
 
     st.session_state.history = st.session_state.history + "  \n\n<p style='color: green;'>QUERY: " + message + "</p><p style='color: red;'>AI RESPONSE: " + response + "</p>\n"
+    st.session_state.onlyquery = st.session_state.onlyquery + "  \n\n<p style='color: green;'>QUERY: " + message + "</p>\n"
+    
     st.rerun()
